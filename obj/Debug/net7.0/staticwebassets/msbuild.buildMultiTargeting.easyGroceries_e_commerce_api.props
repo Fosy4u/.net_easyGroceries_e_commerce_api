@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/easyGroceries_e_commerce_api.props" />
+</Project>
