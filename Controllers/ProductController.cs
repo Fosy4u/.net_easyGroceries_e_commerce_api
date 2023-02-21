@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using easyGroceries_e_commerce_api.DataModel;
 using easyGroceries_e_commerce_api.Model;
 using easyGroceries_e_commerce_api.DatabaseContext;
+using Newtonsoft.Json;
 
 namespace easyGroceries_e_commerce_api.Controllers{
     [ApiController]
@@ -17,7 +18,28 @@ namespace easyGroceries_e_commerce_api.Controllers{
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDataModel>>> GetProducts()
         {
-            return  await _context.Products.ToListAsync();
+           
+              var products =  await _context.Products.ToListAsync();
+          var productList = new List<ProductResponseModel>();
+            foreach (var product in products)
+            {
+                var productResponseModel = new ProductResponseModel
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Description = product.Description,
+                    Price = product.Price,
+                    ImageUrl = product.ImageUrl,
+                    Category = product.Category,
+                    StockQuantity = product.StockQuantity,
+                    ProductBrand = product.ProductBrand,
+                    CreatedAt = product.CreatedAt,
+                    Colors = product.Colors == null ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(product.Colors),
+                    Sizes = product.Sizes == null ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(product.Sizes)
+                };
+                productList.Add(productResponseModel);
+            }
+            return Ok(productList);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDataModel>> GetProduct(Guid id)
@@ -27,7 +49,21 @@ namespace easyGroceries_e_commerce_api.Controllers{
             {
                 return NotFound("Product not found");
             }
-            return product;
+            var productResponseModel = new ProductResponseModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                Category = product.Category,
+                StockQuantity = product.StockQuantity,
+                ProductBrand = product.ProductBrand,
+                CreatedAt = product.CreatedAt,
+                Colors = product.Colors == null ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(product.Colors),
+                Sizes = product.Sizes == null ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(product.Sizes)
+            };
+            return Ok(productResponseModel);
         }
         [HttpPost]
         public async Task<ActionResult<ProductModel>> PostProduct(ProductModel product)
@@ -41,24 +77,16 @@ namespace easyGroceries_e_commerce_api.Controllers{
                 ImageUrl = product.ImageUrl,
                 Category = product.Category,
                 StockQuantity = product.StockQuantity,
-                ProductBrand = product.ProductBrand
+                ProductBrand = product.ProductBrand,
+                Colors = product.Colors == null ? null : JsonConvert.SerializeObject(product.Colors),
+                Sizes = product.Sizes == null ? null : JsonConvert.SerializeObject(product.Sizes)
+
                 
             };
             _context.Products.Add(productDataModel);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetProduct), new { id = productDataModel.Id }, productDataModel);
             
-        }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(Guid id, ProductDataModel product)
-        {
-            if (id != product.Id)
-            {
-                return BadRequest();
-            }
-            _context.Entry(product).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return NoContent();
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
@@ -72,6 +100,6 @@ namespace easyGroceries_e_commerce_api.Controllers{
             await _context.SaveChangesAsync();
             return NoContent();
         }
-    }
+     }
 }
 

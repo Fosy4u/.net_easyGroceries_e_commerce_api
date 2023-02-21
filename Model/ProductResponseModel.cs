@@ -1,10 +1,11 @@
-
 using System.ComponentModel.DataAnnotations;
 
 namespace easyGroceries_e_commerce_api.Model
 {
-    public class ProductModel
+    public class ProductResponseModel
     {
+            [Key]
+        public Guid Id { get; set; }
         [Required]
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -13,8 +14,8 @@ namespace easyGroceries_e_commerce_api.Model
         public string? Category { get; set; }
         public string? ProductBrand { get; set; }
         public int StockQuantity { get; set; } = 0;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public List <string>? Colors { get; set; } 
         public List <string>? Sizes { get; set; } 
-        
     }
 }

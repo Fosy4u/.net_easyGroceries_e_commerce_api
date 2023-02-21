@@ -14,5 +14,9 @@ namespace easyGroceries_e_commerce_api.DataModel
         public string? ProductBrand { get; set; }
         public int StockQuantity { get; set; } = 0;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public string? Colors { get; set; } 
+        public string? Sizes { get; set; } 
+       
+        
     }
 }
