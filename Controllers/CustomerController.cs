@@ -85,12 +85,24 @@ namespace easyGroceries_e_commerce_api.Controllers
 
 // subscribe to royalty membership
          [HttpPut("{id}/royaltyMembership/subscribe")]
-        public async Task<IActionResult> SubscribeToRoyaltyMembership(Guid id)
+        public async Task<IActionResult> SubscribeToRoyaltyMembership( RoyaltySubscriptionModel subscribe)
         {
+            var id = subscribe.Id;
+            var amountPaid = subscribe.AmountPaid;
+            var PaymentMethod = subscribe.PaymentMethod;
+            if(!PaymentMethod.Any()) return BadRequest( "Payment method is required");
             var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
                 return NotFound( "Customer not found");
+            }
+            if(customer.IsRoyaltyMembership)
+            {
+                return BadRequest( "Customer already has a royalty membership");
+            }
+            if (amountPaid < 5)
+            {
+                return BadRequest( "Amount paid is less than £5");
             }
             customer.IsRoyaltyMembership = true;
             _context.Entry(customer).State = EntityState.Modified;
