@@ -98,7 +98,7 @@ namespace easyGroceries_e_commerce_api.Controllers{
             }
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-            return NoContent();
+             return Ok("deleted");
         }
      }
 }

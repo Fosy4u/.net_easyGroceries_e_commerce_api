@@ -15,6 +15,7 @@ namespace easyGroceries_e_commerce_api.Model
         public string? Country { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
+        public string? ImageUrl { get; set; }
         public bool IsRoyaltyMembership { get; set; } = false;
         
     }

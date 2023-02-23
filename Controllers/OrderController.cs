@@ -53,6 +53,7 @@ namespace easyGroceries_e_commerce_api.Controllers
                         PaymentStatus = order.PaymentStatus,
                         
                         
+                        
                     };
                    var customer = await _context.Customers.FindAsync(order.CustomerId);
                    var shipment = await _context.Shipments.SingleOrDefaultAsync(s => s.OrderId == order.Id);
@@ -173,7 +174,9 @@ namespace easyGroceries_e_commerce_api.Controllers
                         TotalPrice = item.Quantity * product.Price,
                         IsDiscounted = DiscountPercentage > 0,
                         DiscountedPrice = IsRoyaltyMembership ? (item.Quantity * product.Price) * DiscountPercentage / 100 : null,
-                        DiscountPercentage = DiscountPercentage
+                        DiscountPercentage = DiscountPercentage,
+                        Size = item.Size,
+                        Color = item.Color,
 
                     });
             

@@ -46,6 +46,7 @@ namespace easyGroceries_e_commerce_api.Controllers
                 Country = customer.Country,
                 Address = customer.Address,
                 Phone = customer.Phone,
+                ImageUrl = customer.ImageUrl,
                 IsRoyaltyMembership = customer.IsRoyaltyMembership || false
             };
             _context.Customers.Add(customerDataModel);
@@ -61,7 +62,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             }
             _context.Entry(customer).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return NoContent();
+             return Ok(customer);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(Guid id)
@@ -73,7 +74,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             }
             _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
-            return NoContent();
+          return Ok("deleted");
         }
 
          [HttpPut("{id}/royaltyMembership/subscribe")]
@@ -87,7 +88,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             customer.IsRoyaltyMembership = true;
             _context.Entry(customer).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok(customer);
         }
 
         [HttpPut("{id}/royaltyMembership/cancel")]
@@ -101,7 +102,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             customer.IsRoyaltyMembership = false;
             _context.Entry(customer).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return NoContent();
+             return Ok(customer);
         }
         
     }

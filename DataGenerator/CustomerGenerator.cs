@@ -27,7 +27,8 @@ namespace easyGroceries_e_commerce_api.DataGenerator
                         City = "London",
                         Country = "UK",
                         Address = "1, London Street",
-                        Phone = "0123456789"
+                        Phone = "0123456789",
+                        ImageUrl = "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHdvbWFufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
                       
                       
                     },
@@ -41,7 +42,8 @@ namespace easyGroceries_e_commerce_api.DataGenerator
                         City = "London",
                         Country = "UK",
                         Address = "2, London Street",
-                        Phone = "01234345789"
+                        Phone = "01234345789",
+                        ImageUrl="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                      
                     },
                     new CustomerDataModel
@@ -54,7 +56,8 @@ namespace easyGroceries_e_commerce_api.DataGenerator
                         City = "London",
                         Country = "UK",
                         Address = "3, London Street",
-                        Phone = "01224656789"
+                        Phone = "01224656789",
+                        ImageUrl="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fG1hbGV8ZW58MHx8MHx8&w=1000&q=80"
                       
                     },
                     new CustomerDataModel
@@ -68,6 +71,7 @@ namespace easyGroceries_e_commerce_api.DataGenerator
                         Country = "UK",
                         Address = "4, London Street",
                         Phone = "0123986782",
+                        ImageUrl="https://taylormaleimage.co.uk/wp-content/uploads/2021/05/taylor-male-image-2.jpg"
                       
                     },
                     new CustomerDataModel
@@ -81,6 +85,7 @@ namespace easyGroceries_e_commerce_api.DataGenerator
                         Country = "UK",
                         Address = "4, London Street",
                         Phone = "07076556655",
+                        ImageUrl="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"
                     
                     }
                

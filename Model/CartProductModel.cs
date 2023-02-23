@@ -15,6 +15,8 @@ namespace easyGroceries_e_commerce_api.Model
         public bool IsDiscounted { get; set; } = false;
         public float? DiscountedPrice { get; set; }
         public float? DiscountPercentage { get; set; } 
+        public string? Color { get; set; }
+        public string? Size { get; set; }
 
     }
 }
