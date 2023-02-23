@@ -11,15 +11,18 @@ namespace easyGroceries_e_commerce_api.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly EcommerceDbContext _context;
+        //create customers
         public CustomerController(EcommerceDbContext context)
         {
             _context = context;
         }
+        //get Customers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerDataModel>>> GetCustomers()
         {
             return await _context.Customers.ToListAsync();
         }
+        //get customer by id
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerDataModel>> GetCustomer(Guid id)
         {
@@ -31,6 +34,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             }
             return customer;
         }
+        //create customer
         [HttpPost]
         public async Task<ActionResult<CustomerModel>> PostCustomer(CustomerModel customer)
         {
@@ -53,6 +57,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetCustomer), new { id = customerDataModel.Id }, customerDataModel);
         }
+        //update customer
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(Guid id, CustomerDataModel customer)
         {
@@ -64,6 +69,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             await _context.SaveChangesAsync();
              return Ok(customer);
         }
+        //delete customer
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(Guid id)
         {
@@ -77,6 +83,7 @@ namespace easyGroceries_e_commerce_api.Controllers
           return Ok("deleted");
         }
 
+// subscribe to royalty membership
          [HttpPut("{id}/royaltyMembership/subscribe")]
         public async Task<IActionResult> SubscribeToRoyaltyMembership(Guid id)
         {
@@ -90,7 +97,7 @@ namespace easyGroceries_e_commerce_api.Controllers
             await _context.SaveChangesAsync();
             return Ok(customer);
         }
-
+// cancel royalty membership
         [HttpPut("{id}/royaltyMembership/cancel")]
         public async Task<IActionResult> CancelRoyaltyMembership(Guid id)
         {

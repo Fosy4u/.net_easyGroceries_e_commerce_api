@@ -2,6 +2,8 @@ using System.ComponentModel.DataAnnotations;
 using easyGroceries_e_commerce_api.Model;
 using Newtonsoft.Json;
 
+// Cart would suppost to be a list of CartProductModel but EF Core has restriction on using inmemory database
+
 namespace easyGroceries_e_commerce_api.DataModel
 {
     public class OrderDataModel
@@ -29,6 +31,7 @@ namespace easyGroceries_e_commerce_api.DataModel
         public string PaymentStatus { get; set; } = "unpaid";
         public string PaymentCurrency { get; set; } = "£";
         public Guid PaymentReceiptId { get; set; } 
+        
         
 
      

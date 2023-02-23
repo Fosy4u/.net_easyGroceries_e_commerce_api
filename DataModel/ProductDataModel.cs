@@ -1,5 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 namespace easyGroceries_e_commerce_api.DataModel
+
+// model for product
+// would be best for colors, and size to have a separate model allowing stock quantity to be tracked properly
+// another option is have each item added inidividually to database even when they are the same product
+// this would allow for more accurate stock tracking
+// left it like this due to time constraints
 {
     public class ProductDataModel
     {
